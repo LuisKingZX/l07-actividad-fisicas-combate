@@ -46,6 +46,7 @@ open class GameObject {
      */
     fun canCollideWith(target: GameObject): Boolean {
         // TODO: Reemplaza este false por la condición requerida
+        //  R/ya esta
         return this !== target &&
                 (collisionMask and target.tags) != 0
     }
