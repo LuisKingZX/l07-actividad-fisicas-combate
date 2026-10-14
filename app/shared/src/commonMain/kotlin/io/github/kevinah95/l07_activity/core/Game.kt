@@ -1,6 +1,8 @@
 package io.github.kevinah95.l07_activity.core
 
 import io.github.kevinah95.l07_activity.entities.createSpell
+import kotlin.collections.minusAssign
+import kotlin.compareTo
 import kotlin.math.abs
 
 data class Stage(
@@ -127,6 +129,20 @@ class Game : GameSession {
      */
     fun castSpell(): Boolean {
         // TODO: Completar la lógica de disparo
-        return false
+            if (spell.casts <= 0) {
+                return false
+            }
+
+            spell.casts -= 1
+
+            val projectile = createSpell()
+            val dir = vectorFromAngle(spell.targetAngle)
+
+            projectile.vx = dir.x * spell.basePower
+            projectile.vy = dir.y * spell.basePower
+
+            spawn(projectile, player.x, player.y)
+
+            return true
+        }
     }
-}
